@@ -199,5 +199,14 @@
         </LinearLayout>
 
     </LinearLayout>
+    <Button
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click me!"
+        android:background="@color/orange"
+        android:textSize="30dp">
+
+    </Button>
 
 </RelativeLayout>

@@ -3,9 +3,11 @@ package com.example.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,13 +16,19 @@ public class MainActivity extends AppCompatActivity{
     double num1;
     double result;
     String currentDisplay="";
+    String allOperator="";
     String currentOperator;
+    String Tag="hi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button test=findViewById(R.id.test);
+        test.setOnClickListener(view ->{
+
+        });
         TextView screen = findViewById(R.id.screen);
 
         Button button0 = findViewById(R.id.button0);
@@ -90,7 +98,14 @@ public class MainActivity extends AppCompatActivity{
                 num1 = Double.parseDouble(screen.getText().toString());
                 currentOperator = button.getText().toString();
                 screen.setText("0");
-
+                allOperator+=button.getText().toString();
+                String nowOperator= String.valueOf(allOperator.charAt(allOperator.length()-1));
+                switch (nowOperator){
+                    case "/":
+                    case "x":
+                    case "-":
+                    case "+":
+                }
             });
         }
 
@@ -137,6 +152,7 @@ public class MainActivity extends AppCompatActivity{
             }
             screen.setText(String.valueOf(result));
             num1=result;
+            Toast.makeText(getApplicationContext(),allOperator,Toast.LENGTH_LONG).show();
         });
     }
 }
