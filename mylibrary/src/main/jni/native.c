@@ -22,6 +22,8 @@ Java_com_example_mylibrary_CalculatorModule_add(JNIEnv *env, jobject thiz, jdoub
     double result=a+b;
     char* resultString=(char *)malloc(50);
     sprintf (resultString,"%f\n", result) ;
+
+    //hehhe
     __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "%f\n", resultString);
     return a + b;
 
