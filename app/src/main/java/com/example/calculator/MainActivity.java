@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                CalculatorModule.Companion.showToast(getApplicationContext(), "TEST IS OKE");
-                CalculatorModule.Companion.getInstance().helloLog("This will log to LogCat via the native call.");
+                CalculatorModule.Companion.showToast(getApplicationContext(),"This will log to LogCat via the native call.");
             }
         });
 
@@ -149,16 +149,16 @@ public class MainActivity extends AppCompatActivity {
             double num2 = Double.parseDouble(screen.getText().toString());
             switch (currentOperator) {
                 case "/":
-                    result =CalculatorModule.Companion.getInstance().divide(num1,num2);
+                    result =CalculatorModule.Companion.getInstance().divideCmake(num1,num2);
                     break;
                 case "x":
-                    result = CalculatorModule.Companion.getInstance().mul(num1, num2);
+                    result = CalculatorModule.Companion.getInstance().mulCmake(num1, num2);
                     break;
                 case "-":
-                    result = CalculatorModule.Companion.getInstance().sub(num1,num2);
+                    result = CalculatorModule.Companion.getInstance().subCmake(num1,num2);
                     break;
                 default:
-                    result = CalculatorModule.Companion.getInstance().add(num1, num2);
+                    result = CalculatorModule.Companion.getInstance().addCmake(num1, num2);
                     break;
             }
             screen.setText(String.valueOf(result));
