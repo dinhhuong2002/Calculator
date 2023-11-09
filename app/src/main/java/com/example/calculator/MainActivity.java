@@ -9,26 +9,35 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mylibrary.CalculatorModule;
+
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     double num1;
     double result;
-    String currentDisplay="";
-    String allOperator="";
+    String currentDisplay = "";
+    String allOperator = "";
     String currentOperator;
-    String Tag="hi";
+    String Tag = "hi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button test=findViewById(R.id.test);
-        test.setOnClickListener(view ->{
-
+        Button test = findViewById(R.id.test);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                CalculatorModule.Companion.showToast(getApplicationContext(), "TEST IS OKE");
+                CalculatorModule.Companion.getInstance().helloLog("This will log to LogCat via the native call.");
+            }
         });
+
+
+
         TextView screen = findViewById(R.id.screen);
 
         Button button0 = findViewById(R.id.button0);
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
 
         Button buttonOn = findViewById(R.id.buttonOn);
         Button buttonOff = findViewById(R.id.buttonOff);
-        Button buttonNegative=findViewById(R.id.buttonNegative);
+        Button buttonNegative = findViewById(R.id.buttonNegative);
         Button buttonDel = findViewById(R.id.buttonDel);
 
         Button buttonPlus = findViewById(R.id.buttonPlus);
@@ -58,9 +67,9 @@ public class MainActivity extends AppCompatActivity{
         buttonOn.setOnClickListener(view -> {
             screen.setVisibility(View.VISIBLE);
             screen.setText("0");
-            currentOperator="";
-            num1=0;
-            currentDisplay="";
+            currentOperator = "";
+            num1 = 0;
+            currentDisplay = "";
         });
 
         ArrayList<Button> nums = new ArrayList<>();
@@ -78,12 +87,12 @@ public class MainActivity extends AppCompatActivity{
         for (Button button : nums) {
             button.setOnClickListener(view -> {
                 if (!screen.getText().toString().equals("0")) {
-                    currentDisplay=screen.getText().toString();
-                    currentDisplay+=button.getText().toString();
+                    currentDisplay = screen.getText().toString();
+                    currentDisplay += button.getText().toString();
                     screen.setText(currentDisplay);
                 } else {
-                    currentDisplay="";
-                    currentDisplay+=button.getText().toString();
+                    currentDisplay = "";
+                    currentDisplay += button.getText().toString();
                     screen.setText(currentDisplay);
                 }
             });
@@ -98,9 +107,9 @@ public class MainActivity extends AppCompatActivity{
                 num1 = Double.parseDouble(screen.getText().toString());
                 currentOperator = button.getText().toString();
                 screen.setText("0");
-                allOperator+=button.getText().toString();
-                String nowOperator= String.valueOf(allOperator.charAt(allOperator.length()-1));
-                switch (nowOperator){
+                allOperator += button.getText().toString();
+                String nowOperator = String.valueOf(allOperator.charAt(allOperator.length() - 1));
+                switch (nowOperator) {
                     case "/":
                     case "x":
                     case "-":
@@ -109,9 +118,11 @@ public class MainActivity extends AppCompatActivity{
             });
         }
 
+        CalculatorModule.Companion.showToast(this, "hello");
+
         //buttonAC
-        buttonNegative.setOnClickListener(view ->{
-            screen.setText("-"+screen.getText().toString());
+        buttonNegative.setOnClickListener(view -> {
+            screen.setText("-" + screen.getText().toString());
         });
 
         //Xoas 1 phaafn tuw
@@ -127,8 +138,8 @@ public class MainActivity extends AppCompatActivity{
         //buttonDouble
         buttonDouble.setOnClickListener(view -> {
             if (!screen.getText().toString().contains(".")) {
-                screen.setText(screen.getText().toString()+".");
-            }else{
+                screen.setText(screen.getText().toString() + ".");
+            } else {
                 return;
             }
         });
@@ -138,21 +149,21 @@ public class MainActivity extends AppCompatActivity{
             double num2 = Double.parseDouble(screen.getText().toString());
             switch (currentOperator) {
                 case "/":
-                    result = num1 / num2;
+                    result =CalculatorModule.Companion.getInstance().divide(num1,num2);
                     break;
                 case "x":
-                    result = num1 * num2;
+                    result = CalculatorModule.Companion.getInstance().mul(num1, num2);
                     break;
                 case "-":
-                    result = num1 - num2;
+                    result = CalculatorModule.Companion.getInstance().sub(num1,num2);
                     break;
                 default:
-                    result = num1 + num2;
+                    result = CalculatorModule.Companion.getInstance().add(num1, num2);
                     break;
             }
             screen.setText(String.valueOf(result));
-            num1=result;
-            Toast.makeText(getApplicationContext(),allOperator,Toast.LENGTH_LONG).show();
+            num1 = result;
+            Toast.makeText(getApplicationContext(), allOperator, Toast.LENGTH_LONG).show();
         });
     }
 }
