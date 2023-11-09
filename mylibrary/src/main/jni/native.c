@@ -30,18 +30,29 @@ Java_com_example_mylibrary_CalculatorModule_add(JNIEnv *env, jobject thiz, jdoub
 JNIEXPORT jdouble JNICALL
 Java_com_example_mylibrary_CalculatorModule_sub(JNIEnv *env, jobject thiz, jdouble a, jdouble b) {
     // TODO: implement sub()
+    double result=a-b;
+    char* resultString=(char *)malloc(50);
+    sprintf (resultString,"%f\n", result) ;
+    __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "%f\n", resultString);
     return a - b;
 }
 
 JNIEXPORT jdouble JNICALL
 Java_com_example_mylibrary_CalculatorModule_mul(JNIEnv *env, jobject thiz, jdouble a, jdouble b) {
     // TODO: implement mul()
+    double result=a*b;
+    char* resultString=(char *)malloc(50);
+    sprintf (resultString,"%f\n", result) ;
+    __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "%f\n", resultString);
     return a * b;
 }
 
 JNIEXPORT jdouble JNICALL
-Java_com_example_mylibrary_CalculatorModule_divide(JNIEnv *env, jobject thiz, jdouble a,
-                                                   jdouble b) {
+Java_com_example_mylibrary_CalculatorModule_divide(JNIEnv *env, jobject thiz, jdouble a, jdouble b) {
     // TODO: implement divide()
+    double result=a/b;
+    char* resultString=(char *)malloc(50);
+    sprintf (resultString,"%f\n", result) ;
+    __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "%f\n", resultString);
     return a / b;
 }
