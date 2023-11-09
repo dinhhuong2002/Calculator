@@ -30,6 +30,10 @@ Java_com_example_mylibrary_CalculatorModule_add(JNIEnv *env, jobject thiz, jdoub
 JNIEXPORT jdouble JNICALL
 Java_com_example_mylibrary_CalculatorModule_sub(JNIEnv *env, jobject thiz, jdouble a, jdouble b) {
     // TODO: implement sub()
+//    double result=a-b;
+//    char* resultString=(char *)malloc(50);
+//    sprintf (resultString,"%f\n", result) ;
+    __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "%s\n", "subtraction");
     return a - b;
 }
 

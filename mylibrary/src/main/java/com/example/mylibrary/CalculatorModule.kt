@@ -41,26 +41,6 @@ class CalculatorModule {
 //        }
     }
 
-//    private fun add(num1: Double, num2: Double): Double {
-//
-//        return num1 + num2;
-//    }
-//
-//    private fun subtract(num1: Double, num2: Double): Double {
-//        return num1 - num2
-//    }
-//
-//    private fun multiply(num1: Double, num2: Double): Double {
-//        return num1 * num2
-//    }
-//
-//    private fun divide(num1: Double, num2: Double): Double {
-//        if (num2 == 0.0) {
-//            throw ArithmeticException("ERROR")
-//        }
-//        return num1 / num2
-//    }
-
 
     external fun helloLog(logThis: String)
     external fun add(a: Double, b: Double): Double
