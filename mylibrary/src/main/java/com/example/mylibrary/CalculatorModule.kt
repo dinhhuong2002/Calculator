@@ -5,7 +5,7 @@ import android.widget.Toast
 
 class CalculatorModule {
     init {
-        System.loadLibrary("native-lib.cpp");
+        System.loadLibrary("native-lib");
     }
     companion object {
 
@@ -23,6 +23,7 @@ class CalculatorModule {
         fun showToast(context: Context, toastMsg: String) {
             Toast.makeText(context, toastMsg, Toast.LENGTH_LONG).show();
         }
+
     }
 
     external fun addCmake(a:Double,b:Double):Double

@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
 
         //buttonEquals
         buttonEquals.setOnClickListener(view -> {
-            double num2 = Double.parseDouble(screen.getText().toString());
+            try {
+                double num2 = Double.parseDouble(screen.getText().toString());
             switch (currentOperator) {
                 case "/":
                     result =CalculatorModule.Companion.getInstance().divideCmake(num1,num2);
@@ -164,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
             screen.setText(String.valueOf(result));
             num1 = result;
             Toast.makeText(getApplicationContext(), allOperator, Toast.LENGTH_LONG).show();
+        }catch (UnsatisfiedLinkError error){
+                System.err.println("Load library faillllll");
+            }
         });
     }
 }
